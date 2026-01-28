@@ -1,7 +1,7 @@
 IBM_HOST = "pub400.com"
 IBM_PORT = 2222
-IBM_USER = "SHAHBAJ"
-IBM_PASS = "laddu7786"
+IBM_USER = " "
+IBM_PASS = " "
 
 LIBRARY = "SHAHBAJ1"
 

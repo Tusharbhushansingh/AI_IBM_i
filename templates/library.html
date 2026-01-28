@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IBM i Library Intelligence</title>
+
+<style>
+
+body {
+    font-family: "Segoe UI", Arial;
+    background: #f4f7fb;
+    margin: 0;
+}
+
+.header {
+    background: #0f62fe;
+    color: white;
+    padding: 18px 40px;
+    font-size: 22px;
+}
+
+.container {
+    width: 85%;
+    margin: 40px auto;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.1);
+}
+
+textarea {
+    width: 100%;
+    height: 70px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+button {
+    background: #0f62fe;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0353e9;
+}
+
+.badge {
+    background: #198038;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+th {
+    background: #e8f0fe;
+    text-align: left;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.scroll-box {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.back {
+    margin-top: 15px;
+    display: inline-block;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">IBM i — Library Intelligence</div>
+
+<div class="container">
+
+<div class="card">
+
+<form method="post">
+<textarea name="question" placeholder="Ask like: How many physical files in SHAHBAJ1">{{ request.form.question }}</textarea>
+<br>
+<button>Ask</button>
+</form>
+
+{% if result %}
+
+<h3>📊 Physical Files Summary</h3>
+
+<span class="badge">{{ result.count }} files found</span>
+
+<div class="scroll-box">
+
+<table>
+<tr>
+<th>#</th>
+<th>File Name</th>
+</tr>
+
+{% for f in result.files %}
+<tr>
+<td>{{ loop.index }}</td>
+<td>{{ f }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endif %}
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<a href="/" class="back">⬅ Back to SQL Agent</a>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<h3>Active Jobs</h3>
+
+<h3>AI System Summary</h3>
+<div class="ai-summary-card">
+    <p>{{ ai_summary or "AI analysis will appear here." }}</p>
+</div>
+
+<div class="legend">
+    <span class="box msgw"></span> MSGW
+    <span class="box hold"></span> HOLD
+    <span class="box thdw"></span> THDW
+    <span class="box sigw"></span> SIGW
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Job #</th>
+            <th>Job</th>
+            <th>User</th>
+            <th>Type</th>
+            <th>CPU%</th>
+            <th>Function</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for job in jobs %}
+        <tr class="status-{{ job.STATUS|lower }}">
+            <td>{{ job.JOBNO }}</td>
+            <td>{{ job.JOB }}</td>
+            <td>{{ job.USER }}</td>
+            <td>{{ job.TYPE }}</td>
+            <td>{{ job.CPU }}</td>
+            <td>{{ job.FUNCTION }}</td>
+            <td>{{ job.STATUS }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<style>
+/* General page styling */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    background-color: #f9fafb;
+    margin: 20px;
+}
+
+/* AI Summary box */
+.ai-box {
+    background: #ffffff;
+    border-left: 4px solid #4a90e2;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #34495e;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #4a90e2;
+    color: #fff;
+}
+
+thead th {
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+}
+
+/* Row hover effect */
+tbody tr:hover {
+    background-color: #f1f5f8;
+}
+
+/* Status colors */
+.status-msgw { background-color: #ffe6e6; }
+.status-hold { background-color: #fff8e1; }
+.status-thdw { background-color: #e6f4ea; }
+.status-sigw { background-color: #e6edff; }
+
+/* Legend styling */
+.legend {
+    margin: 15px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.box {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
+.msgw { background: #ffe6e6; }
+.hold { background: #fff8e1; }
+.thdw { background: #e6f4ea; }
+.sigw { background: #e6edff; }
+
+/* Headers spacing */
+h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead tr {
+        display: none;
+    }
+    tbody td {
+        position: relative;
+        padding-left: 50%;
+        border-bottom: 1px solid #ddd;
+    }
+    tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: 600;
+        color: #34495e;
+    }
+}
+    /* AI Summary Card */
+.ai-summary-card {
+    background: linear-gradient(135deg, #e0f7fa, #f1f8e9); /* subtle gradient */
+    border-left: 5px solid #4a90e2; /* accent border */
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: #34495e;
+    line-height: 1.6;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ai-summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.ai-summary-card p {
+    margin: 0;
+}
+
+/* Optional: highlight keywords in AI summary */
+.ai-summary-card p span.keyword {
+    background-color: #fffae6;
+    font-weight: 600;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+</style>
